@@ -1,0 +1,3 @@
+NER Result
+ 
+Mahashivratri celebrations at my native place pomendi along with Nandini<PERSON> Vichare<PERSON> , Latisha<PERSON> Rajan<PERSON> Vichare<PERSON> , Mandar<PERSON> Vichare<PERSON> , Kalpesh<PERSON> Salvi<PERSON> 

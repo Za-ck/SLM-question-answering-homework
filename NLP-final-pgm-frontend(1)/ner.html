@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Sample</title>
+	<link rel="stylesheet" type="text/css" href="ui1.css">
+</head>
+
+<body>
+	<header class="top">
+		<div>
+			<span style="color:antiquewhite; font-size: 40px;"> Eng-Hin NER
+			</span>
+			<br>
+		</div>
+		
+	</header>
+
+	<div id="tableContainer">
+		<!-- <div id="tableRow"> -->
+
+		<section id="drinks">
+			<div>
+				<h1>
+					<select id="sel">
+						<option value="" selected disabled hidden>mode</option>
+						<option value="mode1">mode1</option>
+						<option value="mode2">mode2</option>
+						<option value="mode3">mode3</option>
+					</select>
+					<p id='moshi'>&nbsp;&nbsp; </p>
+				</h1>
+				<br>
+
+				<h2></h2>
+				<p id="func"></p>
+			</div>
+			<div class="task">
+				<h1></h1>
+				<br>
+			</div>
+
+		</section>
+
+
+		<section id="block1">
+			<h1 class="people" style="color: antiquewhite;">待分析语句</h1>
+			<br>
+			<div id="input">
+				<textarea id="data" rows="26" cols="80" style="color: antiquewhite;"></textarea>
+				<br>
+				<button class="btn2" onclick="input()">传递数据</button>
+			</div>
+
+		</section>
+
+		<section id="block">
+
+			<div id="result">
+				<iframe name="result" width="1" height="0" scrolling="yes" frameborder="1" id="task1">
+				</iframe>
+				<h1 style="color: antiquewhite;">分析结果</h1>
+				<iframe class="ifr1" name="result1" width="550" height="400" wrap="virtual" word-break="normal" scrolling="yes" frameborder="3" id="task2">
+				</iframe>
+
+
+				<a href="./res2.txt" target="result1" class="tar" ></a>
+				<br/>
+				<p><button class='button4' onclick="exec1('{YOUR_PYTHON_PATH}python.exe  {YOUR_FILE_PATH}/call_ner_hineng.py')">进行分析</button>
+				<button class="btn">获取分析结果</button></p>
+			</div>
+
+		</section>
+	</div>
+
+	<!-- <footer>
+	</footer> -->
+	<script type="text/javascript">
+		'点击获取分析结果显示分析内容'
+		window.onload = function () {
+			var doc = document.getElementById("task1").contentDocument || document.frames["result"].document;
+			var doc1 = document.getElementById("task2").contentDocument || document.frames["result1"].document;
+			var tex1 = document.querySelector('#data')
+			var sel = document.querySelector('#sel');
+			sel.options[0].selected = true;
+			tex1.value = '';
+			doc.body.innerHTML = '';
+			doc1.body.innerHTML = '';
+			var btn = document.querySelector('.btn');
+			btn.onclick = function () {
+				document.querySelectorAll('.tar')[0].click();
+				document.querySelectorAll('.tar')[1].click();
+				input2();
+			}
+		
+			var func = document.getElementById('func');
+
+			var select = document.getElementById("sel");
+			select.onchange = function () {
+				var value = select.value;
+				if (value === 'mode1') {
+					func.innerHTML = ''
+				}
+				if (value === 'mode2') {
+					func.innerHTML = ''
+				}
+				if (value === 'mode3') {
+					func.innerHTML = ''
+				}
+			}
+		}
+
+	</script>
+	<script language="JavaScript">
+		'执行python程序'
+		function exec1(command) {
+			var ws = new ActiveXObject("WScript.Shell");
+			ws.run(command);         
+			ws = null;
+		}
+		'前端输入'
+		function input() {
+			text = document.getElementById("data").value;  
+			var strFile = "{YOUR_FILE_PATH}/docs/input.txt";
+			var objFSO = new ActiveXObject("Scripting.FileSystemObject");
+			var objStream = objFSO.CreateTextFile(strFile, true);
+			objStream.WriteLine(text); 
+			objStream.Close();
+		}
+	  	console.log(str);
+	</script>
+</body>
+</html>
